@@ -11,7 +11,8 @@
         android:id="@+id/time_picker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:timePickerMode="spinner"/>
+        android:timePickerMode="spinner"
+        android:soundEffectsEnabled="true"/>
 
 
     <RelativeLayout
