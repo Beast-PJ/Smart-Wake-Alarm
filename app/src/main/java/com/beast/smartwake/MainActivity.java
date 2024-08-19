@@ -1,15 +1,20 @@
 package com.beast.smartwake;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.Button;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
-import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
@@ -18,86 +23,73 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.karumi.dexter.listener.multi.SnackbarOnAnyDeniedMultiplePermissionsListener;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    FloatingActionButton alarmBtn, fabMenu;
-    private BottomSheetDialog bottomSheetDialog;
+    FloatingActionButton alarm_btn;
+    private TimePicker alarmTimePicker;
+    private AlarmManager alarmManager;
+    private PendingIntent pendingIntent;
 
+    @SuppressLint("ScheduleExactAlarm")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        alarmBtn = findViewById(R.id.setAlarmButton);
-        fabMenu = findViewById(R.id.fabMenu);
-
+        alarm_btn = findViewById(R.id.setAlarmButton);
         // Request permissions
         requestPermissions();
 
-        alarmBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, AlarmActivity.class);
-            startActivity(intent);
-        });
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        fabMenu.setOnClickListener(v -> showBottomSheetDialog());
-
-        // Initialize Bottom Sheet
-        initBottomSheet();
-    }
-
-    private void initBottomSheet() {
-        bottomSheetDialog = new BottomSheetDialog(MainActivity.this);
-        View sheetView = getLayoutInflater().inflate(R.layout.bottom_sheet_menu, null);
-        bottomSheetDialog.setContentView(sheetView);
-
-        // Handle Bottom Sheet item clicks
-        TextView navItem1 = sheetView.findViewById(R.id.nav_item_1);
-        TextView navItem2 = sheetView.findViewById(R.id.nav_item_2);
-        TextView navItem3 = sheetView.findViewById(R.id.nav_item_3);
-        TextView navItem4 = sheetView.findViewById(R.id.nav_item_4);
-
-        navItem1.setOnClickListener(v -> {
-            bottomSheetDialog.dismiss();
-            // Launch Alarm
-            Intent intent = new Intent(MainActivity.this, AlarmActivity.class);
-            startActivity(intent);
-        });
-
-        navItem2.setOnClickListener(v -> {
-            bottomSheetDialog.dismiss();
-            // Launch Stopwatch Activity
-            Toast.makeText(MainActivity.this, "Stopwatch clicked", Toast.LENGTH_SHORT).show();
-            // Intent intent = new Intent(MainActivity.this, StopwatchActivity.class);
-            // startActivity(intent);
-        });
-
-        navItem3.setOnClickListener(v -> {
-            bottomSheetDialog.dismiss();
-            // Launch Timer Activity
-            Toast.makeText(MainActivity.this, "Timer clicked", Toast.LENGTH_SHORT).show();
-            // Intent intent = new Intent(MainActivity.this, TimerActivity.class);
-            // startActivity(intent);
-        });
-
-        navItem4.setOnClickListener(v -> {
-            bottomSheetDialog.dismiss();
-            // Launch Settings Activity
-            Toast.makeText(MainActivity.this, "Settings clicked", Toast.LENGTH_SHORT).show();
-            // Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-            // startActivity(intent);
+        // Set default fragment
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AlarmFragment()).commit();
+        }
+        alarm_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AlarmActivity.class);
+                startActivity(intent);
+            }
         });
     }
 
-    private void showBottomSheetDialog() {
-        bottomSheetDialog.show();
-    }
+    @SuppressLint("NonConstantResourceId")
+    private final BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            item -> {
+                Fragment selectedFragment = null;
+
+                switch (item.getItemId()) {
+                    case R.id.nav_alarm:
+                        selectedFragment = new AlarmFragment();
+                        break;
+                    case R.id.nav_stopwatch:
+                        selectedFragment = new StopwatchFragment();
+                        break;
+                    case R.id.nav_timer:
+                        selectedFragment = new TimerFragment();
+                        break;
+                }
+
+                if (selectedFragment != null) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                }
+
+                return true;
+            };
+
+
+
+
 
     private void requestPermissions() {
         MultiplePermissionsListener snackbarMultiplePermissionsListener =
                 SnackbarOnAnyDeniedMultiplePermissionsListener.Builder
-                        .with(this.getCurrentFocus(), "All permissions are needed for this app to function properly")
+                        .with(getCurrentFocus(), "All permissions are needed for this app to function properly")
                         .withOpenSettingsButton("Settings")
                         .build();
 
@@ -107,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
                         Manifest.permission.CAMERA,
                         Manifest.permission.USE_FULL_SCREEN_INTENT
                 )
-                .withListener(snackbarMultiplePermissionsListener)
                 .withListener(new MultiplePermissionsListener() {
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
@@ -128,4 +119,5 @@ public class MainActivity extends AppCompatActivity {
                 .onSameThread()
                 .check();
     }
+
 }

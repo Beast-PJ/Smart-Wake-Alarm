@@ -1,0 +1,23 @@
+<!-- res/menu/bottom_nav_menu.xml -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/nav_alarm"
+        android:icon="@drawable/alarm_clock"
+        android:title="Alarm"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/nav_stopwatch"
+        android:icon="@drawable/alarm"
+        android:title="Stopwatch"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/nav_timer"
+        android:icon="@drawable/clock"
+        android:title="Timer"
+        app:showAsAction="always"/>
+
+</menu>
