@@ -16,15 +16,22 @@
             tools:listitem="@layout/alarm_item"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_day_mode" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/setAlarmButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="40dp"
-            android:text="Set Alarm"
-            android:src="@drawable/add"/>
+            android:layout_marginBottom="96dp"
+            android:src="@drawable/add" />
 
 </RelativeLayout>
 

@@ -1,0 +1,40 @@
+<!-- res/layout/bottom_sheet_menu.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/nav_item_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="Alarm"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/nav_item_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="Stopwatch"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/nav_item_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="Timer"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/nav_item_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="Settings"
+        android:textSize="18sp" />
+</LinearLayout>
