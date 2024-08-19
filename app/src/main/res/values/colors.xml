@@ -11,7 +11,6 @@
     <color name="modeColor">#ffffff</color>
     <color name="backColor">#ffffff</color>
     <color name="dialogueBtn">#f9a825</color>
-    <color name="background">#1E1F22</color>
     <color name="light_dark">#74000000</color>
     <color name="purple_200">#1A78F2</color>
     <color name="purple_500">#1A78F2</color>
@@ -19,6 +18,12 @@
     <color name="teal_200">#1A78F2</color>
     <color name="teal_700">#FF018786</color>
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#c1c2c4</color>
+    <color name="primary">#6200EE</color>
+    <color name="primaryDark">#3700B3</color>
+    <color name="background">#F5F5F5</color>
+    <color name="textPrimary">#212121</color>
+    <color name="chipBackground">#E0E0E0</color>
+    <color name="chipStroke">#B0BEC5</color>
 
 
 </resources>

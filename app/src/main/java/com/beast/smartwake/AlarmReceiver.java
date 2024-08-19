@@ -5,11 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 
 public class AlarmReceiver extends BroadcastReceiver {
-
     @Override
     public void onReceive(Context context, Intent intent) {
-        Intent alarmIntent = new Intent(context, AlarmActivity.class);
-        alarmIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(alarmIntent);
+        Intent i = new Intent(context, AlarmTaskActivity.class);
+//        i.putExtra("TASK_TYPE", intent.getIntExtra("TASK_TYPE", R.id.radio_calculation));
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(i);
     }
 }
