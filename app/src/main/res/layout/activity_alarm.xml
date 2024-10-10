@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/glassmorphic_background"
-    android:padding="16dp">
+    android:padding="16dp"
+    tools:context=".AlarmActivity">
 
     <!-- Time Picker Card -->
     <com.google.android.material.card.MaterialCardView
@@ -31,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:timePickerMode="spinner"
-                android:theme="@style/TimePickerTheme"/>
+                android:theme="@style/TimePickerTheme" />
 
             <ImageView
                 android:id="@+id/alarmIcon"
@@ -44,9 +45,9 @@
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Task Selection Card -->
+    <!-- Task Grid View Card -->
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/taskSelectionCard"
+        android:id="@+id/taskGridCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/timePickerCard"
@@ -57,51 +58,175 @@
         android:backgroundTint="#FAFAFA"
         app:strokeColor="@color/primaryLight">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/taskTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choose a task to stop the alarm"
+            android:textColor="@color/primary"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Grid Layout for Tasks -->
+        <androidx.gridlayout.widget.GridLayout
+            android:id="@+id/taskGridLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:columnCount="2"
+            android:rowCount="2"
+            android:layout_gravity="center"
             android:padding="8dp">
 
-            <TextView
-                android:id="@+id/taskTitle"
-                android:layout_width="wrap_content"
+            <!-- Easy Calculation Task -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Choose a task to stop the alarm"
-                android:textColor="@color/primary"
-                android:textStyle="bold"
-                android:textSize="18sp" />
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="6dp"
+                app:strokeColor="@color/primaryLight">
 
-            <!-- Task Chips -->
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chipGroup"
-                android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/icon_calculation"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:src="@drawable/ic_calculation"
+                        android:tint="@color/primary"/>
+
+                    <TextView
+                        android:id="@+id/task_calculation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Easy Calculation"
+                        android:textColor="@color/primary"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:layout_marginTop="8dp"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Memory Game Task -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:singleSelection="true">
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="6dp"
+                app:strokeColor="@color/primaryLight">
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_calculation"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:text="Easy Calculation"
-                    android:checkedIconVisible="false"
-                    app:chipBackgroundColor="@color/chipColor"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="16dp">
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_memory"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:text="Memory Game"
-                    android:checkedIconVisible="false"
-                    app:chipBackgroundColor="@color/chipColor"/>
+                    <ImageView
+                        android:id="@+id/icon_memory"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:src="@drawable/ic_memory_game"
+                        android:tint="@color/primary"/>
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_scan"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:text="Scan Object/Barcode"
-                    android:checkedIconVisible="false"
-                    app:chipBackgroundColor="@color/chipColor"/>
-            </com.google.android.material.chip.ChipGroup>
-        </LinearLayout>
+                    <TextView
+                        android:id="@+id/task_memory"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Memory Game"
+                        android:textColor="@color/primary"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:layout_marginTop="8dp"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Scan Object/Barcode Task -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="6dp"
+                app:strokeColor="@color/primaryLight">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/icon_scan"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:src="@drawable/ic_scan"
+                        android:tint="@color/primary"/>
+
+                    <TextView
+                        android:id="@+id/task_scan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Scan Object"
+                        android:textColor="@color/primary"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:layout_marginTop="8dp"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Custom Task (For Future) -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="6dp"
+                app:strokeColor="@color/primaryLight">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/icon_custom_task"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:src="@drawable/ic_custom_task"
+                        android:tint="@color/primary"/>
+
+                    <TextView
+                        android:id="@+id/task_custom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Custom Task"
+                        android:textColor="@color/primary"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:layout_marginTop="8dp"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </androidx.gridlayout.widget.GridLayout>
     </com.google.android.material.card.MaterialCardView>
 
     <!-- Set Alarm Button -->
@@ -110,7 +235,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Set Alarm"
-        android:layout_below="@id/taskSelectionCard"
+        android:layout_below="@id/taskGridCard"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
         android:icon="@drawable/ic_set_alarm"
@@ -119,18 +244,5 @@
         android:textColor="@color/white"
         app:cornerRadius="16dp"
         app:iconTint="@color/white"/>
-
-    <!-- Decorative Lottie Animation -->
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/alarmAnimation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        app:lottie_rawRes="@raw/alarm_animation"
-        app:lottie_loop="true"
-        app:lottie_autoPlay="true"
-        tools:ignore="MissingClass" />
 
 </RelativeLayout>
