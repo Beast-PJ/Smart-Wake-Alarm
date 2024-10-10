@@ -6,4 +6,10 @@
     </style>
 
     <style name="Theme.SmartWake" parent="Base.Theme.SmartWake" />
+    <!-- Chip Style -->
+    <style name="ChipStyle">
+    <item name="chipBackgroundColor">@color/chipBackground</item>
+    <item name="chipStrokeColor">@color/chipStroke</item>
+    <item name="chipStrokeWidth">1dp</item>
+    </style>
 </resources>
