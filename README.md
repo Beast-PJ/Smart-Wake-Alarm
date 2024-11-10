@@ -79,12 +79,6 @@ We’re always excited for new ideas and improvements. Feel free to contribute b
 
 ---
 
-## 📜 **License**
-
-This project is licensed under the **MIT License**. Please see the [LICENSE](LICENSE) file for details.
-
----
-
 ## 💬 **Let’s Chat!**
 
 Got questions or feedback? Reach out to me at **p.jadhav61657@gmail.com**—I’d love to hear from you and make your mornings even better!
