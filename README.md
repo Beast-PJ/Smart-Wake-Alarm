@@ -24,14 +24,6 @@ SmartWake Alarm is not just another alarm clock. It’s an **innovative wake-up 
 
 - 🎵 **Wake-Up Music**: Start your day with your favorite songs or curated wake-up playlists, setting the perfect tone for your morning.
 
-- 💬 **Motivational Quotes**: Get inspired with positive affirmations and motivational quotes as part of your morning routine.
-
-- 🌦️ **Weather Updates**: Check the daily weather as you wake up, helping you plan your day right from the start.
-
-- 🏠 **Smart Home Integration**: Sync SmartWake with your smart home devices to control lights, temperature, and other settings automatically as you wake up.
-
-- ⏲️ **Morning Routine Scheduler**: Plan your morning by setting up a sequence of tasks and reminders, making your start-of-day activities smooth and organized.
-
 ---
 
 ## 🚀 **Installation – Get Started Now!**
